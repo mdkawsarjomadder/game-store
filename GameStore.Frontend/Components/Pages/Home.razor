@@ -1,8 +1,46 @@
 ﻿@page "/"
+@using GameStore.Frontend.Models
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Gmae Catalog</PageTitle>
 
-<h1 class="hh" >Hello, world!</h1>
-<h2 class="hhh">Hello Dotnet.!</h2>
 
-Welcome to your new app.
+<table>
+  <thead>
+   <th>Id</th>
+   <th>Name</th>
+   <th>Genre</th>
+   <th>Price</th>
+   <th>Release Date</th>
+
+  </thead>
+   <tbody>
+   
+   </tbody>
+</table>
+
+@code {
+  private GameSummary[] games= 
+  [
+       new(){
+        Id =1,
+        Name = "Street Fighter IT",
+        Genre = "Fighting",
+        Price = 59.00M,
+        ReleaseDate = new DateOnly(1999,10,05)
+       },
+         new(){
+        Id =2,
+        Name = "Final Fantasy XIV ",
+        Genre = "Roleplaying",
+        Price = 69.00M,
+        ReleaseDate = new DateOnly(2010,11,10)
+       },
+         new(){
+        Id = 3,
+        Name = "FIFA 2023",
+        Genre = "Sports",
+        Price = 99.00M,
+        ReleaseDate = new DateOnly(2022,09,15)
+       }
+  ];
+}
