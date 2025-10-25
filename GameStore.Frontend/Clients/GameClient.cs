@@ -5,9 +5,9 @@ namespace GameStore.Frontend.Clients;
 
 public class GameClient
 {
-    private readonly List<GameSummary> games =
+  private readonly List<GameSummary> games =
 [
-     new(){
+   new(){
         Id =1,
         Name = "Street Fighter IT",
         Genre = "Fighting",
@@ -30,5 +30,21 @@ public class GameClient
        }
 ];
 
-    public GameSummary[] GatGames() => [.. games];
+  private readonly Genre[] genres = new GenresClient().GetGenres();
+  public GameSummary[] GatGames() => [.. games];
+
+  public void AddGame(GameDetails game)
+  {
+    ArgumentException.ThrowIfNullOrWhiteSpace(game.GenreId);
+    var genre = genres.Single(genre => genre.Id == int.Parse(game.GenreId));
+    var gameSummary = new GameSummary
+    {
+      Id = games.Count + 1,
+      Name = game.Name,
+      Genre = genre.Name,
+      Price = game.Price,
+      ReleaseDate = game.ReleaseDate
+    };
+    games.Add(gameSummary);
+    }
 }
