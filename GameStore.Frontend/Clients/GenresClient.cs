@@ -1,33 +1,50 @@
-using System;
+// using System;
+// using GameStore.Frontend.Models;
+
+// namespace GameStore.Frontend.Clients;
+
+// public class GenresClient
+// {
+//     public readonly Genre[] genres =
+//     [
+//          new()
+//             {
+//             Id = 1,
+//             Name = "Fighting"
+//             },
+//        new()
+//         {
+//             Id = 2,
+//             Name = "Sports"
+//         },
+//        new()
+//         {
+//             Id = 3,
+//             Name = "Racing"
+//         },
+//      new()
+//         {
+//             Id = 4,
+//             Name = "Kids And Family"
+//         }
+//     ];
+
+//     public Genre[] GetGenres() => genres;
+// }
+
 using GameStore.Frontend.Models;
 
-namespace GameStore.Frontend.Clients;
-
-public class GenresClient
+namespace GameStore.Frontend.Clients
 {
-    public readonly Genre[] genres =
-    [
-         new()
-            {
-            Id = 1,
-            Name = "Fighting"
-            },
-       new()
+    public class GenresClient
+    {
+        public Genre[] GetGenres() => new[]
         {
-            Id = 2,
-            Name = "Sports"
-        },
-       new()
-        {
-            Id = 3,
-            Name = "Racing"
-        },
-     new()
-        {
-            Id = 4,
-            Name = "Kids And Family"
-        }
-    ];
-
-    public Genre[] GetGenres() => genres;
+            new Genre { Id = 1, Name = "Fighting" },
+            new Genre { Id = 2, Name = "Roleplaying" },
+            new Genre { Id = 3, Name = "Sports" },
+            new Genre { Id = 4, Name = "Adventure" }
+        };
+    }
 }
+
