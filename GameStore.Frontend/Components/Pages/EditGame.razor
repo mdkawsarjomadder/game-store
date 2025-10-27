@@ -1,4 +1,7 @@
 ﻿@page "/editgame"
+@inject NavigationManager NavigationManager
+@inject GameClient GameClient
+@inject GenresClient GenresClient
 
 
 <PageTitle>New Game</PageTitle>
@@ -12,33 +15,37 @@
     {
           <div class="row">
      <div class="col-md-4">
-     <EditForm Model="@game" FormName="editGame" OnSubmit="HandleSubmmit">
+     <EditForm Model="@game" FormName="editGame" OnValidSubmit="HandleSubmmit">
+      <DataAnnotationsValidator/>
         <div class="mb-3">
             <label for="name" class="form-label">Name:</label>
             <InputText id="name" @bind-value="game.Name" class="form-control"/> 
+            <ValidationMessage For="() => game.Name" />
         </div>
             <div class="mb-3">
             <label for="genre" class="form-label">Genre:</label>
             <InputSelect id="genre" @bind-value="game.GenreId" class="form-select">
               <option value="">Select a Genre!</option>
-              @foreach(var genre in genres)
+              @foreach(Genre genre in genres)
               {
-                 <option class="@genre.Id">@genre.Name</option>
+                 <option class="@genre.Name">@genre.Name</option>
               }
             </InputSelect>
+            <ValidationMessage For="()=>game.GenreId"/>
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Price:</label>
                 <InputNumber id="price" @bind-value="game.Price" class="form-control"/>
+                <ValidationMessage For="() => game.Price"/>
             </div>
             <div class="mb-3">
                 <label for="releaseDate" class="form-label">Release Date:</label>
                 <InputDate id="releaseDate" @bind-value="game.ReleaseDate" class="form-control"/>
             </div>
           @* button *@
-     <button type="button" class="btn btn-primary btn-hover-warning">
-    Save Game
-</button>
+        <button type="submit" class="btn btn-primary btn-hover-warning">Save</button>
+        <a class="btn btn-secondary" role="button" href="/">Cancel</a>
+
       </EditForm>
      </div>
     </div>
@@ -52,18 +59,20 @@
    {
     Name = string.Empty,
     ReleaseDate = DateOnly.FromDateTime(DateTime.UtcNow)
+    
    };
-    private GenresClient genresClient = new();
-    private GameClient gameClient = new ();
+   @*  private GenresClient genresClient = new();
+    private GameClient gameClient = new (); *@
     private  Genre[]? genres;
 
     protected override void OnInitialized()
     {
-        genres = genresClient.GetGenres();
+        genres = GenresClient.GetGenres();
     }
 
     private void HandleSubmmit()
     {
-        gameClient.AddGame(game);
+        GameClient.AddGame(game);
+        NavigationManager.NavigateTo("/");
     }
 }

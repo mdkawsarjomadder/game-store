@@ -8,21 +8,21 @@ public class GenresClient
     public readonly Genre[] genres =
     [
          new()
-        {
+            {
             Id = 1,
             Name = "Fighting"
-        },
-  new()
+            },
+       new()
         {
             Id = 2,
             Name = "Sports"
         },
-  new()
+       new()
         {
             Id = 3,
             Name = "Racing"
         },
-  new()
+     new()
         {
             Id = 4,
             Name = "Kids And Family"

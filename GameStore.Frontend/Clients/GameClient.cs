@@ -36,7 +36,9 @@ public class GameClient
   public void AddGame(GameDetails game)
   {
     ArgumentException.ThrowIfNullOrWhiteSpace(game.GenreId);
-    var genre = genres.Single(genre => genre.Id == int.Parse(game.GenreId));
+    var genre = genres.Single(g => g.Name == game.GenreId);
+    // var genre = genres.Single(genre => genre.Id == int.Parse(game.GenreId));
+    // var genre = genres.Single(genre => genre.Name == game.GenreId);
     var gameSummary = new GameSummary
     {
       Id = games.Count + 1,
