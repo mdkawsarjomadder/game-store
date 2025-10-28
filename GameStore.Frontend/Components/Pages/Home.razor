@@ -7,28 +7,36 @@
   <a class="btn btn-primary" role="button" href="/editgame" >New Game</a>
 </div>
 
-<table class=" table table-striped table-bordered table-hover mt-2  " >
-  <thead class="table-dark">
-    <th>Id</th>
-    <th>Name</th>
-    <th>Genre</th>
-    <th class="text-end" >Price</th>
-    <th>Release Date</th>
-
-  </thead>
-    <tbody >
-    @foreach(var  game in games!)
-    {
-         <tr>
-         <td>@game.Id</td>
-         <td>@game.Name</td>
-         <td>@game.Genre</td>
-         <td class="text-end text-primary">@game.Price.ToString("c2")</td>
-         <td>@game.ReleaseDate</td>
-       </tr>
-    }
+<table class="table table-striped table-bordered table-hover mt-2">
+    <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Genre</th>
+            <th class="text-end">Price</th>
+            <th>Release Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var game in games!)
+        {
+            <tr>
+                <td>@game.Id</td>
+                <td>@game.Name</td>
+                <td>@game.Genre</td>
+                <td class="text-end text-primary">@game.Price.ToString("c2")</td>
+                <td>@game.ReleaseDate</td>
+                <td class="">
+                    <a class="btn btn-sm btn-primary" role="button" href="@GameUrl(game.Id)">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
 
 @code {
     @* public GameClient client = new (); *@
@@ -38,4 +46,5 @@
     {
         games = Client.GatGames();
     }
+    private static string GameUrl(int id) => $"/editgame/{id}";
 } 
