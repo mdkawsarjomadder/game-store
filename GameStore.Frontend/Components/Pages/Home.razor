@@ -28,9 +28,18 @@
                 <td class="text-end text-primary">@game.Price.ToString("c2")</td>
                 <td>@game.ReleaseDate</td>
                 <td class="">
-                    <a class="btn btn-sm btn-primary" role="button" href="@GameUrl(game.Id)">
+                    <div class="d-fiex">
+                      <a class="btn btn-sm btn-primary" role="button" href="@GameUrl(game.Id)">
                         <i class="bi bi-pencil"></i>
                     </a>
+                     <button 
+                     class="btn btn-danger" 
+                     data-bs-toggle="modal" 
+                     data-bs-target="@GetDeleteModalId(game)">     
+                     <i class="bi bi-x-lg"></i>
+                     </button>
+                    </div>
+                     <Deletegame Game="@game"/>
                 </td>
             </tr>
         }
@@ -47,4 +56,8 @@
         games = Client.GatGames();
     }
     private static string GameUrl(int id) => $"/editgame/{id}";
+    private string GetDeleteModalId(GameSummary game)
+    {
+        return $"#{Deletegame.GetModelId(game)}";
+    }
 } 

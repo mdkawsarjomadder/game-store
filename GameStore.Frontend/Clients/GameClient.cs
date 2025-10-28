@@ -85,6 +85,11 @@ namespace GameStore.Frontend.Clients
             existingGame.Price = updateGame.Price;
             existingGame.ReleaseDate = updateGame.ReleaseDate;
         }
+        public void DateleGame(int id)
+        {
+            var game = GetGameSummaryById(id);
+            games.Remove(game);
+        }
 
         private GameSummary GetGameSummaryById(int id)
         {
