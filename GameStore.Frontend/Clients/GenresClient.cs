@@ -1,50 +1,52 @@
-// using System;
-// using GameStore.Frontend.Models;
-
-// namespace GameStore.Frontend.Clients;
-
-// public class GenresClient
-// {
-//     public readonly Genre[] genres =
-//     [
-//          new()
-//             {
-//             Id = 1,
-//             Name = "Fighting"
-//             },
-//        new()
-//         {
-//             Id = 2,
-//             Name = "Sports"
-//         },
-//        new()
-//         {
-//             Id = 3,
-//             Name = "Racing"
-//         },
-//      new()
-//         {
-//             Id = 4,
-//             Name = "Kids And Family"
-//         }
-//     ];
-
-//     public Genre[] GetGenres() => genres;
-// }
-
 using GameStore.Frontend.Models;
 
-namespace GameStore.Frontend.Clients
+namespace GameStore.Frontend.Clients;
+
+public class GenresClient(HttpClient httpClient)
 {
-    public class GenresClient(HttpClient httpClient)
-    {
-        public Genre[] GetGenres() => new[]
+/*    public readonly Genre[] genres =
+    [
+         new()
+            {
+            Id = 1,
+            Name = "Fighting"
+            },
+       new()
         {
-            new Genre { Id = 1, Name = "Fighting" },
-            new Genre { Id = 2, Name = "Roleplaying" },
-            new Genre { Id = 3, Name = "Sports" },
-            new Genre { Id = 4, Name = "Adventure" }
-        };
-    }
+            Id = 2,
+            Name = "Sports"
+        },
+       new()
+        {
+            Id = 3,
+            Name = "Racing"
+        },
+     new()
+        {
+            Id = 4,
+            Name = "Kids And Family"
+        }
+    ];
+*/
+    public async Task<Genre[] >GetGenresAsync() 
+    => await httpClient.GetFromJsonAsync<Genre[]>("Genres") ?? [];
 }
+
+// using GameStore.Frontend.Models;
+
+// namespace GameStore.Frontend.Clients
+// {
+//     public class GenresClient(HttpClient httpClient)
+//     {
+//         public Genre[] GetGenres() => new[]
+//         {
+//             new Genre { Id = 1, Name = "Fighting" },
+//             new Genre { Id = 2, Name = "Roleplaying" },
+//             new Genre { Id = 3, Name = "Sports" },
+//             new Genre { Id = 4, Name = "Adventure" }
+//         };
+//     }
+    
+    
+// }
 
