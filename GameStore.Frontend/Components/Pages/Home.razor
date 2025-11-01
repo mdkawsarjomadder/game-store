@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject GameClient Client
+@attribute [StreamRendering]
 
 <PageTitle>Game Catalog</PageTitle>
 
@@ -13,7 +14,7 @@
         <div class="spinner-border text-primary" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
-        <p>Loading games...</p>
+        <p>Loading...</p>
     </div>
 }
 else if (games.Length == 0)
